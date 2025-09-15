@@ -10,43 +10,34 @@ import SwiftUI
 @Observable
 @MainActor
 class ControlJuego{
-    var estado_actual: EstadosJuego =
-        EstadosJuego.esta_jugando
+    var estado_actual: EstadosJuego = EstadosJuego.esta_jugando
     
     var lista_jugadores = jugadores_falsos
     
-    var numero_secreto:
+    var numero_secreto: Int.random(in: 1...100)
     
-    var intentos: Int
-    init() {
-        reiniciar_juego()
-    }
+    var intentos: Int = 0
     
-    func validar_intento(){
-        let numero_del_usuario = Int(entrada_del_usuario)
+    init() {}
+    
+    func validar_intento(_ intento: String) -> String{
+        let numero_del_usuario = Int(intento)
         
         if let numero_del_usuario = numero_del_usuario{
-            intento_del_usuario += 1
-            
-            
+            intentos += 1
+        
             if(numero_del_usuario == numero_aleatorio){
                 estado_del_juego = .ha_ganado
                 return "Has ganado"
             }
             else if (numero_del_usuario > numero_aleatorio){
-                entrada_del_usuario = ""
                 return "Tu intento es mayor"
-               
- 
             }
             else {
-                entrada_del_usuario = ""
                 return "Tu intento es menor"
-               
             }
         }
         else {
-            entrada_del_usuario = ""
             return "Por favor introduce un numero valido"
         }
     }
@@ -54,8 +45,9 @@ class ControlJuego{
         intentos = 0
         numero_secreto = Int.random(in: 1...100)
         
-        estado_actual = esta_jugando
+        estado_actual = .esta_jugando
     }
+    
     /*
     func loop_juego(){
         switch(estado_del_juego){
@@ -69,5 +61,6 @@ class ControlJuego{
                 comentario = ""
                 entrada_del_usuario = ""
         }
-    }*/
+    }
+    */
 }
