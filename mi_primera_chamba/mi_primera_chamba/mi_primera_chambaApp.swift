@@ -9,9 +9,10 @@ import SwiftUI
 
 @main
 struct mi_primera_chambaApp: App {
+    @State var controlador_de_juego = ControlJuego()
     var body: some Scene {
         WindowGroup {
-            Pantalla()
+            Pantalla().environment(controlador_de_juego)
         }
     }
 }
